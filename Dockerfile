@@ -5,6 +5,7 @@ ENV SCREEN_HEIGHT 800
 ENV SCREEN_DEPTH 16
 ENV PASSWORD coreemu
 ENV DEBIAN_FRONTEND noninteractive
+ENV TERM linux
 
 
 RUN apt-get update -qq && \
