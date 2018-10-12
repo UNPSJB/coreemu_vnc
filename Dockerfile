@@ -58,8 +58,12 @@ RUN chmod +x /entrypoint.sh
 # Emane dependencies
 RUN apt-get update -qq && apt-get --no-install-recommends -y install gcc g++ autoconf automake libtool libxml2-dev libprotobuf-dev \
 python-protobuf libpcap-dev libpcre3-dev uuid-dev debhelper pkg-config build-essential \
-python-setuptools protobuf-compiler git dh-python python-lxml && \
-rm -rf /var/lib/apt/*
+python-setuptools protobuf-compiler git dh-python python-lxml
+
+# Add nmap and iptables for ARyS
+RUN apt-get update -qq && \
+    apt-get --no-install-recommends -y install nmap iptables && \
+    rm -rf /var/lib/apt/*
 
 # Need a patch to get EMANE to compile with GCC >7
 ADD patches/gccfix.diff /root/
